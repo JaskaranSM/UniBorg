@@ -11,4 +11,5 @@ pylast
 chatterbot-corpus
 cowsay
 gaggle
+tracemoepy
 -r ./requirements-stdborg.txt
