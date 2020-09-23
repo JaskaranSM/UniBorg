@@ -4,9 +4,13 @@
 import os
 
 
+<<<<<<< Updated upstream
 
 
 class Config:
+=======
+class Config((object)):
+>>>>>>> Stashed changes
     LOGGER = True
     # Get this value from my.telegram.org! Please do not steal
     APP_ID = int(os.environ.get("APP_ID", 6))
@@ -64,10 +68,28 @@ class Config:
     # TG API limit. A message can have maximum 4096 characters!
     MAX_MESSAGE_SIZE_LIMIT = 4095
     # set blacklist_chats where you do not want userbot's features
+<<<<<<< Updated upstream
     UB_BLACK_LIST_CHAT = {int(x) for x in os.environ.get(
             "UB_BLACK_LIST_CHAT",
             ""
         ).split()}
+=======
+    UB_BLACK_LIST_CHAT = {
+        int(x) for x in os.environ.get("UB_BLACK_LIST_CHAT", "").split()
+    }
+
+    # maximum number of messages for antiflood
+    MAX_ANTI_FLOOD_MESSAGES = 10
+    # warn mode for anti flood
+    ANTI_FLOOD_WARN_MODE = ChatBannedRights(
+        until_date=None,
+        view_messages=None,
+        send_messages=True
+    )
+    # chat ids or usernames, it is recommended to use chat ids,
+    # providing usernames means an additional overhead for the user
+    CHATS_TO_MONITOR_FOR_ANTI_FLOOD = []
+>>>>>>> Stashed changes
     # specify LOAD and NO_LOAD
     LOAD = []
     # foloowing plugins won't work on Heroku,
@@ -90,11 +112,30 @@ class Config:
     ))
     # specify command handler that should be used for the plugins
     # this should be a valid "regex" pattern
-    COMMAND_HAND_LER = os.environ.get("COMMAND_HAND_LER", "\.")
+    COMMAND_HAND_LER = os.environ.get("COMMAND_HAND_LER", r"\.")
     # specify list of users allowed to use bot
     # WARNING: be careful who you grant access to your bot.
     # malicious users could do ".exec rm -rf /*"
+<<<<<<< Updated upstream
     SUDO_USERS = list({int(x) for x in os.environ.get("SUDO_USERS", "").split()})
+=======
+    SUDO_USERS = {int(x) for x in os.environ.get("SUDO_USERS", "").split()}
+    # VeryStream only supports video formats
+    VERY_STREAM_LOGIN = os.environ.get("VERY_STREAM_LOGIN", None)
+    VERY_STREAM_KEY = os.environ.get("VERY_STREAM_KEY", None)
+    TEMP_DIR = os.environ.get("TEMP_DIR", None)
+    CHANNEL_ID = int(os.environ.get("CHANNEL_ID", 1234))
+    #LASTFM
+    LAST_FM_USERNAME = os.environ.get("LAST_FM_USERNAME",None)
+    LAST_FM_API_KEY = os.environ.get("LAST_FM_API_KEY",None)
+    #MongoDB
+    MONGO_URI = os.environ.get("MONGO_URI", None)
+    #Lydia API
+    LYDIA_API = os.environ.get("LYDIA_API",None)
+    #Google Chrome Stuff
+    CHROME_DRIVER = os.environ.get("CHROME_DRIVER", None)
+    GOOGLE_CHROME_BIN = os.environ.get("GOOGLE_CHROME_BIN", None)
+>>>>>>> Stashed changes
     # Google Drive ()
     G_DRIVE_CLIENT_ID = os.environ.get("G_DRIVE_CLIENT_ID", None)
     G_DRIVE_CLIENT_SECRET = os.environ.get("G_DRIVE_CLIENT_SECRET", None)
@@ -146,6 +187,7 @@ class Config:
         "LT_QOAN_NOE_FF_MPEG_URL",
         None
     )
+
 
 
 

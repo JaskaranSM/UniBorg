@@ -6,7 +6,11 @@ from uniborg.util import admin_cmd, humanbytes
 
 
 @borg.on(admin_cmd(  # pylint:disable=E0602
+<<<<<<< Updated upstream
     pattern="torrentz (torrentz2\.eu|idop\.se) (.*)"
+=======
+    pattern=r"stor (torrentz2\.eu|idop\.se) (.*)"
+>>>>>>> Stashed changes
 ))
 async def _(event):
     if event.fwd_from:

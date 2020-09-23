@@ -34,8 +34,13 @@ async def await_read(chat, message):
     await fut
 
 
+<<<<<<< Updated upstream
 @borg.on(util.admin_cmd(pattern="(del)(?:ete)?$"))
 @borg.on(util.admin_cmd(pattern="(edit)(?:\s+(.*))?$"))
+=======
+@borg.on(util.admin_cmd("(del)(?:ete)?$"))
+@borg.on(util.admin_cmd(r"(edit)(?:\s+(.*))?$"))
+>>>>>>> Stashed changes
 async def delete(event):
     await event.delete()
     command = event.pattern_match.group(1)

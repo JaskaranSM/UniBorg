@@ -3,12 +3,16 @@ Syntax: .ocr <LangCode>
 Available Languages: .ocrlanguages"""
 import json
 import os
+<<<<<<< Updated upstream
 from PIL import Image
 import requests
+=======
+>>>>>>> Stashed changes
 from uniborg.util import admin_cmd
+import aiohttp
 
 
-def ocr_space_file(filename, overlay=False, api_key=Config.OCR_SPACE_API_KEY, language='eng'):
+async def ocr_space_file(filename, overlay=False, api_key=Config.OCR_SPACE_API_KEY, language='eng'):
     """ OCR.space API request with local file.
         Python3.5 - not tested on 2.7
     :param filename: Your file path & name.
@@ -22,19 +26,23 @@ def ocr_space_file(filename, overlay=False, api_key=Config.OCR_SPACE_API_KEY, la
     :return: Result in JSON format.
     """
 
-    payload = {'isOverlayRequired': overlay,
-               'apikey': api_key,
-               'language': language,
-               }
+    payload = {
+        'isOverlayRequired': overlay,
+        'apikey': api_key,
+        'language': language
+        }
     with open(filename, 'rb') as f:
-        r = requests.post('https://api.ocr.space/parse/image',
-                          files={filename: f},
-                          data=payload,
-                          )
-    return r.json()
+        async with aiohttp.ClientSession() as ses:
+            async with ses.post(
+                'https://api.ocr.space/parse/image',
+                files={filename: f},
+                data=payload
+                ) as rep:
+                    response = await rep.json()
+                    return response
 
 
-def ocr_space_url(url, overlay=False, api_key=Config.OCR_SPACE_API_KEY, language='eng'):
+async def ocr_space_url(url, overlay=False, api_key=Config.OCR_SPACE_API_KEY, language='eng'):
     """ OCR.space API request with remote file.
         Python3.5 - not tested on 2.7
     :param url: Image url.
@@ -53,10 +61,13 @@ def ocr_space_url(url, overlay=False, api_key=Config.OCR_SPACE_API_KEY, language
                'apikey': api_key,
                'language': language,
                }
-    r = requests.post('https://api.ocr.space/parse/image',
-                      data=payload,
-                      )
-    return r.json()
+    async with aiohttp.ClientSession() as ses:
+        async with ses.post(
+            'https://api.ocr.space/parse/image',
+            data=payload
+        ) as rep:
+            response = await rep.json()
+            return response
 
 
 def progress(current, total):
@@ -112,10 +123,14 @@ async def parse_ocr_space_api(event):
         Config.TMP_DOWNLOAD_DIRECTORY,
         progress_callback=progress
     )
+<<<<<<< Updated upstream
     if downloaded_file_name.endswith((".webp")):
         downloaded_file_name = conv_image(downloaded_file_name)
     test_file = ocr_space_file(filename=downloaded_file_name, language=lang_code)
     ParsedText = "hmm"
+=======
+    test_file = await ocr_space_file(filename=downloaded_file_name, language=lang_code)
+>>>>>>> Stashed changes
     try:
         ParsedText = test_file["ParsedResults"][0]["ParsedText"]
         ProcessingTimeInMilliseconds = str(int(test_file["ProcessingTimeInMilliseconds"]) // 1000)
