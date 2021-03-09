@@ -19,7 +19,7 @@ async def _(event):
     msg = f"**Title**: {result['title_english']}"\
           f"\n**Similarity**: {round(result['similarity']*100,2)}%"\
           f"\n**Episode**: {result['episode']}"
-    preview = await tracemoe.video_preview(search)
+    preview = await tracemoe.natural_preview(search)
     with open('preview.mp4', 'wb') as f:
      f.write(preview)
     await event.edit(msg)
