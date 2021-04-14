@@ -36,7 +36,7 @@ def get_video_thumb(file, output=None, width=90):
         return output
 
 
-@borg.on(admin_cmd("rename (.*)"))
+@borg.on(admin_cmd(pattern="rename (.*)"))
 async def _(event):
     if event.fwd_from:
         return
@@ -65,7 +65,7 @@ async def _(event):
         await event.edit("Syntax // `.rename file.name` as reply to a Telegram media")
 
 
-@borg.on(admin_cmd("rnupload (.*)"))
+@borg.on(admin_cmd(pattern="rnupload (.*)"))
 async def _(event):
     if event.fwd_from:
         return
@@ -112,7 +112,7 @@ async def _(event):
         await event.edit("Syntax // .rnupload file.name as reply to a Telegram media")
 
 
-@borg.on(admin_cmd("rnstreamupload (.*)"))
+@borg.on(admin_cmd(pattern="rnstreamupload (.*)"))
 async def _(event):
     if event.fwd_from:
         return

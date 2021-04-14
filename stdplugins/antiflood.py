@@ -70,7 +70,7 @@ because he reached the defined flood limit.""".format(event.message.from_id),
             )
 
 
-@borg.on(admin_cmd("setflood (.*)"))  # pylint:disable=E0602
+@borg.on(admin_cmd(pattern="setflood (.*)"))  # pylint:disable=E0602
 async def _(event):
     if event.fwd_from:
         return

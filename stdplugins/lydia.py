@@ -21,16 +21,15 @@ import asyncio
 import logging
 from time import time
 from telethon import events
-from pymongo import MongoClient
 logging.basicConfig(level=logging.INFO)
 
 if Config.MONGO_URI and Config.LYDIA_API is not None:
 	api_key = Config.LYDIA_API
 
-    # Initialise client
-	lydia = LydiaAI(api_key)
-	db = mongo_client['test']
-	lydiadb = db.lydia
+# Initialise client
+lydia = LydiaAI(api_key)
+db = mongo_client['test']
+lydiadb = db.lydia
 
 
 lydia_chats = []

@@ -114,14 +114,8 @@ class Config(object):
     # Google Drive ()
     G_DRIVE_CLIENT_ID = os.environ.get("G_DRIVE_CLIENT_ID", None)
     G_DRIVE_CLIENT_SECRET = os.environ.get("G_DRIVE_CLIENT_SECRET", None)
-    GDRIVE_FOLDER_ID = os.environ.get("GDRIVE_FOLDER_ID", None)
-    AUTH_TOKEN_DATA = os.environ.get("AUTH_TOKEN_DATA", None)
-    if AUTH_TOKEN_DATA != None:
-        os.makedirs(TMP_DOWNLOAD_DIRECTORY)
-        t_file = open(TMP_DOWNLOAD_DIRECTORY+"auth_token.txt","w")
-        t_file.write(AUTH_TOKEN_DATA)
-        t_file.close()
-
+    GDRIVE_FOLDER_ID = os.environ.get("GDRIVE_FOLDER_ID", "root")
+    IS_TEAM_DRIVE = os.environ.get("IS_TEAM_DRIVE",False)
 
 class Production(Config):
     LOGGER = False

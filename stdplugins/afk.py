@@ -60,7 +60,7 @@ async def set_not_afk(event):
         borg.storage.recvd_messages = {}
 
 
-@borg.on(admin_cmd("afk ?((.|\n)*)"))  # pylint:disable=E0602
+@borg.on(admin_cmd(pattern="afk ?((.|\n)*)"))  # pylint:disable=E0602
 async def _(event):
     if event.fwd_from:
         return
